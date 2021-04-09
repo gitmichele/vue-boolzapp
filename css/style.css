@@ -90,6 +90,7 @@ main{
     padding: 7px 16px;
     display: flex;
     cursor: pointer;
+    justify-content: space-between;
 }
 #sidebar-chats .img-container{
     width: 48px;
@@ -97,6 +98,7 @@ main{
     border-radius: 50%;
     overflow: hidden;
     margin-right: 15px;
+    flex-shrink: 0;
 }
 #sidebar-chats img{
     width: 100%;
@@ -106,6 +108,14 @@ main{
     flex-direction: column;
     justify-content: space-around;
     font-size: 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    flex-grow: 2;
+    
+}
+#sidebar-chats .time-container{
+    padding-top: 5px;
+    margin-left: 5px;
 }
 
 /* MESSAGES */
