@@ -91,15 +91,18 @@ function init() {
             ],
             toDisplay: [],
             isFocused: false,
-            listItem: []
+            listItem: [],
+            newMsg: '',
+            selIndex: null
         },
         methods: {
 
             getMessages: function(index) {
 
-                this.toDisplay = []
-                let numOfMessages = this.contacts[index].messages.length
-                this.listItem = document.getElementsByTagName('li')
+                this.toDisplay = [];
+                this.selIndex = index;
+                let numOfMessages = this.contacts[index].messages.length;
+                this.listItem = document.getElementsByTagName('li');
                 
                 for (i=0; i<this.listItem.length; i++){
 
@@ -112,6 +115,13 @@ function init() {
                     this.toDisplay.push({ msg, status})
                 };              
                 this.listItem[index].setAttribute('style', 'color:#fff; background-color: #5682a3;')
+            },
+
+            sendMsg: function() {
+
+                this.contacts[this.selIndex].messages.push({'text': this.newMsg, 'status': 'sent'})
+                this.getMessages(this.selIndex)
+                this.newMsg = ''
             },
         }
     });

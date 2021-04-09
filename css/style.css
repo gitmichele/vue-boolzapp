@@ -4,6 +4,10 @@
     padding: 0;
     box-sizing: border-box;
 }
+:focus {
+    outline:0;
+    outline:none;
+}
 body{
     font-family: 13px/18px 'IBM Plex Sans Condensed', sans-serif;
     background-color: #e7ebf0;
@@ -97,10 +101,7 @@ main{
     cursor: pointer;
     justify-content: space-between;
 }
-.focused{
-    background-color: blue;
-}
-#sidebar-chats .img-container{
+.img-container{
     width: 48px;
     height: 48px;
     border-radius: 50%;
@@ -144,6 +145,8 @@ main{
     width: 100%;
     display: flex;
     flex-direction: column;
+    height: calc(100% - 125px);
+    overflow: auto;
 }
 #messages .msg{
     font-size: 13px;
@@ -164,5 +167,30 @@ main{
 .received{
     align-self: flex-start;
 }
-
+#messages .typing-container{
+    height: 125px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding: 35px 0;
+}
+.typing-container textarea{
+    height: 100%;
+    font-size: 13px;
+    width: 60%;
+    margin-right: 35px;
+    border: none;
+    border-bottom: 2px solid lightskyblue;
+    resize: none;
+    
+}
+.typing-container textarea:focus::placeholder{
+    opacity: 0;
+}
+.typing-container i{
+    font-size: 20px;
+    cursor: pointer;
+    color: #5682a3;
+}
 
