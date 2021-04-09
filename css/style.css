@@ -37,6 +37,7 @@ main{
 }
 
 /* SIDEBAR */
+/* SIDEBAR SEARCH */
 #sidebar{
     width: 31%;
     height: 100%;
@@ -44,22 +45,67 @@ main{
 }
 .search-container{
     padding: 12px;
+    position: relative;
 }
-.search-container input{
+#sidebar-search input{
+    position: relative;
     height: 34px;
     width: 100%;
     color: #000;
-    font-size: 12px;
+    font-size: 13px;
     border: 1px solid #F2F2F2;
     border-radius: 2px;
     padding: 6px 26px 6px 30px;
     margin: 0;
     background-color: #F2F2F2;
 }
-.search-container input:focus{
+#sidebar-search input:focus{
     background-color: #fff;
     border: 1px solid #d9dbde;
     outline: 0;
+}
+#sidebar-search input::placeholder{
+    color: #999;
+}
+#sidebar-search i{
+    position: absolute;
+    color: #999;
+    opacity: .7;
+    z-index: 99;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    left: 25px;
+    font-size: 13px;
+}
+
+/* SIDEBAR CHATS */
+.chats-container{
+    display: flex;
+    flex-direction: column;
+}
+#sidebar-chats ul{
+    list-style: none;
+}
+#sidebar-chats li{
+    padding: 7px 16px;
+    display: flex;
+    cursor: pointer;
+}
+#sidebar-chats .img-container{
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 15px;
+}
+#sidebar-chats img{
+    width: 100%;
+}
+#sidebar-chats .text-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    font-size: 13px;
 }
 
 /* MESSAGES */
