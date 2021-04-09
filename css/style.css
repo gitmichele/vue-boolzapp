@@ -1,0 +1,49 @@
+/* GENERAL RULES */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: 13px/18px 'IBM Plex Sans Condensed', sans-serif;
+    background-color: #e7ebf0;
+    font-size: 10px;
+}
+.app-container{
+    width: 54%;
+    margin: 0 auto;
+    max-width: 1010px;
+    min-width: 300px;
+}
+
+/* TOPBAR */
+#topbar{
+    display: flex;
+    height: 48px;
+    background-color: #5682a3;
+}
+
+/* MAIN */
+main{
+    display: flex;
+    height: calc(100vh - 48px - 23px);
+    background: #fff;
+    box-shadow: 0px 1px 0 #dfe5ec;
+    border-radius: 0 0 3px 3px;
+    border-left: 1px solid #dfe5ec;
+    border-right: 1px solid #dfe5ec;
+    border-bottom: 1px solid #d2dbe3;
+    overflow: hidden;
+}
+
+/* SIDEBAR */
+#sidebar{
+    width: 31%;
+    height: 100%;
+    border-right: 2px solid #dfe5ec;
+}
+
+/* MESSAGES */
+#messages{
+    width: 100%;
+}
