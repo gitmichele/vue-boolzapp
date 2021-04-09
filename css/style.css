@@ -15,6 +15,11 @@ body{
     max-width: 1010px;
     min-width: 300px;
 }
+.clearfix{
+    clear: both;
+    content: '';
+    display: table;
+}
 
 /* TOPBAR */
 #topbar{
@@ -122,3 +127,31 @@ main{
 #messages{
     width: 69%;
 }
+#messages .date{
+    text-align: center;
+    color: #999;
+    font-size: 13px;
+    margin: 10px auto;
+}
+#messages .messages-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+#messages .msg{
+    font-size: 13px;
+    border-radius: 5px;
+    padding: 7px 15px;
+    box-shadow: 0px 1px 0 #dfe5ec;
+    border-left: 1px solid #dfe5ec;
+    border-right: 1px solid #dfe5ec;
+    border-bottom: 1px solid #d2dbe3;
+    max-width: 80%;
+    margin: 10px 60px;
+}
+.send{
+    align-self: flex-end;
+    background-color: #5682a3;
+}
+
+
