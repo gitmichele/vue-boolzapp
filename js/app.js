@@ -88,9 +88,22 @@ function init() {
                         }
                     ],
                 },
-            ]
+            ],
+            'toDisplay': []
         },
-        methods: {}
+        methods: {
+
+            getMessages: function(index) {
+
+                this.toDisplay = []
+                let numOfMessages = this.contacts[index].messages.length
+                for (i=0; i<numOfMessages; i++){
+                    let msg = this.contacts[index].messages[i].text
+                    let status = this.contacts[index].messages[i].status
+                    this.toDisplay.push({ msg, status})
+                }               
+            },
+        }
     });
 };
 

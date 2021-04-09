@@ -42,7 +42,7 @@
                 <div id="sidebar-chats">
                     <div class="chats-container">
                         <ul>
-                            <li v-for='contact in contacts'>
+                            <li @click='getMessages(contactIndex)' v-for='(contact,contactIndex) in contacts'>
                                 <div class="img-container">
                                     <img :src="contact.avatar" alt="">
                                 </div>
@@ -65,7 +65,7 @@
                 </div>
 
                 <div class="messages-container">
-                    <div class="msg"></div>
+                    <div v-for='message in toDisplay' :class="(message.status == 'sent') ? 'sent' : 'received'"  class="msg">{{message.msg}}</div>
                 </div>
             </section>
         </main>

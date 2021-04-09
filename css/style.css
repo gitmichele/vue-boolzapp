@@ -156,6 +156,10 @@ main{
 .sent{
     align-self: flex-end;
     background-color: #5682a3;
+    color: #fff;
+}
+.received{
+    align-self: flex-start;
 }
 
 
