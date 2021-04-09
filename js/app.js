@@ -4,7 +4,7 @@ function init() {
     
         el: '#app',
         data: {
-            'contacts': [
+            contacts: [
                 {
                     name: 'Michele',
                     avatar: 'img/avatar1.png',
@@ -89,7 +89,9 @@ function init() {
                     ],
                 },
             ],
-            'toDisplay': []
+            toDisplay: [],
+            isFocused: false,
+            listItem: []
         },
         methods: {
 
@@ -97,11 +99,19 @@ function init() {
 
                 this.toDisplay = []
                 let numOfMessages = this.contacts[index].messages.length
+                this.listItem = document.getElementsByTagName('li')
+                
+                for (i=0; i<this.listItem.length; i++){
+
+                    this.listItem[i].setAttribute('style', 'color: #000;background-color: #fff;')
+                }
+
                 for (i=0; i<numOfMessages; i++){
                     let msg = this.contacts[index].messages[i].text
                     let status = this.contacts[index].messages[i].status
                     this.toDisplay.push({ msg, status})
-                }               
+                };              
+                this.listItem[index].setAttribute('style', 'color:#fff; background-color: #5682a3;')
             },
         }
     });

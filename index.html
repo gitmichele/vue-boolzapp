@@ -42,7 +42,7 @@
                 <div id="sidebar-chats">
                     <div class="chats-container">
                         <ul>
-                            <li @click='getMessages(contactIndex)' v-for='(contact,contactIndex) in contacts'>
+                            <li @click='getMessages(contactIndex)' v-for='(contact,contactIndex) in contacts' :class="{focused: isFocused}">
                                 <div class="img-container">
                                     <img :src="contact.avatar" alt="">
                                 </div>

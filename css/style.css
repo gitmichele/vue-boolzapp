@@ -97,6 +97,9 @@ main{
     cursor: pointer;
     justify-content: space-between;
 }
+.focused{
+    background-color: blue;
+}
 #sidebar-chats .img-container{
     width: 48px;
     height: 48px;
