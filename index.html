@@ -42,25 +42,13 @@
                 <div id="sidebar-chats">
                     <div class="chats-container">
                         <ul>
-                            <li>
+                            <li v-for='contact in contacts'>
                                 <div class="img-container">
-                                    <img src="img/avatar1.png" alt="">
+                                    <img :src="contact.avatar" alt="">
                                 </div>
                                 <div class="text-container">
-                                    <h3>Nome </h3>
-                                    <p>testo  </p>
-                                </div>
-                                <div class="time-container">
-                                    11.21
-                                </div>
-                            </li>
-                            <li>
-                                <div class="img-container">
-                                    <img src="img/avatar1.png" alt="">
-                                </div>
-                                <div class="text-container">
-                                    <h3></h3>
-                                    <p>adscsadcsd</p>
+                                    <h3>{{contact.name}} </h3>
+                                    <p><span v-if='contact.messages[contact.messages.length - 1].status == "sent"'>Tu:</span> {{contact.messages[contact.messages.length - 1].text}}</p>
                                 </div>
                                 <div class="time-container">
                                     11.21
@@ -77,8 +65,7 @@
                 </div>
 
                 <div class="messages-container">
-                    <div class="msg send">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui quod perspiciatis placeat libero dicta? Cum maxime, praesentium quam nisi iure beatae velit earum, totam enim sapiente sunt repudiandae numquam voluptatibus?</div>
-                    <div class="msg received">Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui nisi molestias quidem, fugit consectetur commodi! Distinctio, laboriosam? Dicta culpa nobis laudantium eos, quas velit. Recusandae aliquid laudantium eaque ducimus tempore.</div>
+                    <div class="msg"></div>
                 </div>
             </section>
         </main>
