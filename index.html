@@ -35,14 +35,14 @@
                 <div id="sidebar-search">
                     <div class="search-container">
                         <i class="fas fa-search"></i>
-                        <input type="text" placeholder="Cerca">
+                        <input type="text" placeholder="Cerca" v-model='search'>
                     </div>                    
                 </div>
 
                 <div id="sidebar-chats">
                     <div class="chats-container">
                         <ul>
-                            <li @click='getMessages(contactIndex)' v-for='(contact,contactIndex) in contacts'>
+                            <li @click='getMessages(contactIndex)' v-for='(contact,contactIndex) in filteredContacts' >
                                 <div class="img-container">
                                     <img :src="contact.avatar" alt="">
                                 </div>
@@ -60,7 +60,7 @@
             </section>
 
             <section id="messages">
-                <div class="messages-container">
+                <div v-if='selIndex != null' class="messages-container">
                     <div v-for='message in toDisplay' :class="(message.status == 'sent') ? 'sent' : 'received'"  class="msg">{{message.msg}}</div>
                 </div>
 
@@ -69,8 +69,8 @@
                     <i @click='sendMsg' class="fas fa-paper-plane"></i>
                 </div>
 
-                <div v-else>
-                    seleziona una chat
+                <div class='no-chat' v-else>
+                    Seleziona una chat per iniziare a messaggiare
                 </div>
             </section>
         </main>

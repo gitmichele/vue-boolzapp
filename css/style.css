@@ -194,3 +194,11 @@ main{
     color: #5682a3;
 }
 
+/* CHOOSE A CHAT */
+#messages .no-chat{
+    padding: 230px 0;
+    color: #999;
+    font-size: 16px;
+    line-height: 18px;
+    text-align: center;
+}
