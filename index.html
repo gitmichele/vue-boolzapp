@@ -35,14 +35,15 @@
                 <div id="sidebar-search">
                     <div class="search-container">
                         <i class="fas fa-search"></i>
-                        <input type="text" placeholder="Cerca" v-model='search'>
+                        <input type="text" placeholder="Cerca" v-model='search'
+                        v-on:keyup="stayFocused">
                     </div>                    
                 </div>
 
                 <div id="sidebar-chats">
                     <div class="chats-container">
                         <ul>
-                            <li @click='getMessages(contactIndex)' v-for='(contact,contactIndex) in filteredContacts' >
+                            <li @click='getMessages(contactIndex); changeBg(contact);' v-for='(contact,contactIndex) in filteredContacts'>
                                 <div class="img-container">
                                     <img :src="contact.avatar" alt="">
                                 </div>
