@@ -89,39 +89,64 @@ function init() {
                     ],
                 },
             ],
+
+            // array di messaggi dei messaggi relativi alla chat selezionata 
             toDisplay: [],
-            isFocused: false,
+            
+            // array degli li relativi alle singole chat
             listItem: [],
+
+            // nuovo messaggio da inviare
             newMsg: '',
+
+            // li selezionato (-> chat selezionata)
             selIndex: null
         },
         methods: {
 
+            // prendo i messaggi da contacts e li stampo nel contentitore html dedicato
             getMessages: function(index) {
 
+                // svuoto i messaggi da mostrare da messaggi di chat precedenti
                 this.toDisplay = [];
+                // assegno l'indice selezionato all'apposita variabile
                 this.selIndex = index;
+                // conto quanti messaggi devo stampare 
                 let numOfMessages = this.contacts[index].messages.length;
+                // seleziono tutti gli li per andare a operare sul loro sfondo
                 this.listItem = document.getElementsByTagName('li');
                 
+                // ciclo per cambiare lo sfondo solo all'li selezionato
                 for (i=0; i<this.listItem.length; i++){
 
                     this.listItem[i].setAttribute('style', 'color: #000;background-color: #fff;')
                 }
+                this.listItem[index].setAttribute('style', 'color:#fff; background-color: #5682a3;')
 
+                // ciclo per stampare i messaggi del contatto selezionato
                 for (i=0; i<numOfMessages; i++){
                     let msg = this.contacts[index].messages[i].text
                     let status = this.contacts[index].messages[i].status
                     this.toDisplay.push({ msg, status})
                 };              
-                this.listItem[index].setAttribute('style', 'color:#fff; background-color: #5682a3;')
             },
 
             sendMsg: function() {
 
+                // pusho il nuovo messaggio nell'oggetto messaggi del contatto selezionato
                 this.contacts[this.selIndex].messages.push({'text': this.newMsg, 'status': 'sent'})
+                // richiamo la funzione che stampa nuovamnete i messaggi, compreso quello nuovo
                 this.getMessages(this.selIndex)
+                // pulisco la textarea per l'inserimento nuovi messaggi
                 this.newMsg = ''
+
+                setTimeout(function () {this.answerMsg()}.bind(this), 1000)
+            },
+            answerMsg: function() {
+
+                let answer = 'ok';
+                this.contacts[this.selIndex].messages.push({ 'text': answer, 'status': 'received' })
+                this.getMessages(this.selIndex)
             },
         }
     });
