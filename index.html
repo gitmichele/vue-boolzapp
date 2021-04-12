@@ -46,7 +46,7 @@ WhatsApp non lo uso molto e ho scelto di rifarmi a telegram semplicemente perch√
                     <div class="chats-container">
                         <ul>
                             <li @click='getMessages(contact.name, contactIndex)'
-                                v-for='(contact,contactIndex) in filteredContacts'
+                                v-for='(contact ,contactIndex) in filteredContacts'
                                 :class='contact.name == selName ? "focused" : "" '>
                                 <div class="img-container">
                                     <img :src="contact.avatar" alt="">

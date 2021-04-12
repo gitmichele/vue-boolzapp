@@ -121,6 +121,7 @@ function init() {
             // prendo i messaggi da contacts e li stampo nel contentitore html dedicato
             getMessages: function(name, index) {
 
+                console.log(index);
                 // svuoto i messaggi da mostrare da messaggi di chat precedenti
                 this.toDisplay = [];
                 // assegno l'indice selezionato all'apposita variabile
@@ -142,7 +143,7 @@ function init() {
                 // pusho il nuovo messaggio nell'oggetto messaggi del contatto selezionato
                 this.filteredContacts[this.selIndex].messages.push({'text': this.newMsg, 'status': 'sent'})
                 // richiamo la funzione che stampa nuovamnete i messaggi, compreso quello nuovo
-                this.getMessages(this.selIndex)
+                this.getMessages(this.selName, this.selIndex)
                 // pulisco la textarea per l'inserimento nuovi messaggi
                 this.newMsg = ''
 
@@ -152,7 +153,7 @@ function init() {
 
                 let answer = 'ok';
                 this.filteredContacts[this.selIndex].messages.push({ 'text': answer, 'status': 'received' })
-                this.getMessages(this.selIndex)
+                this.getMessages(this.selName, this.selIndex)
             },
         }
     });
