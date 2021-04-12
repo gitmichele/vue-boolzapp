@@ -145,11 +145,11 @@ main{
     margin: 10px auto;
 }
 #messages .messages-container{
-    width: 100%;
+    max-width: 100%;
     display: flex;
     flex-direction: column;
     height: calc(100% - 125px);
-    overflow: auto;
+    overflow-y: auto;
 }
 #messages .msg{
     font-size: 13px;
@@ -159,13 +159,22 @@ main{
     border-left: 1px solid #dfe5ec;
     border-right: 1px solid #dfe5ec;
     border-bottom: 1px solid #d2dbe3;
-    max-width: 80%;
     margin: 10px 60px;
+    display: flex;
+    max-width: 80%;
+    word-wrap: anywhere;
+}
+.msg .text{
+    max-width: 90%;
+}
+.msg .rest{
+    align-self: flex-end;
+    margin-left: 10px;
 }
 .msg i{
     cursor: pointer;
-    margin-left: 15px;
     position: relative;
+    margin-left: 25px;
 }
 .msg .dropdown-container{
     position: absolute;
