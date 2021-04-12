@@ -103,6 +103,10 @@ function init() {
 
             // stringa dell'input di ricerca
             search: '',
+
+            clickedMsg: [], 
+
+            isDropped: false
         },
         computed: {
 
@@ -121,7 +125,6 @@ function init() {
             // prendo i messaggi da contacts e li stampo nel contentitore html dedicato
             getMessages: function(name, index) {
 
-                console.log(index);
                 // svuoto i messaggi da mostrare da messaggi di chat precedenti
                 this.toDisplay = [];
                 // assegno l'indice selezionato all'apposita variabile
@@ -153,6 +156,17 @@ function init() {
 
                 let answer = 'ok';
                 this.filteredContacts[this.selIndex].messages.push({ 'text': answer, 'status': 'received' })
+                this.getMessages(this.selName, this.selIndex)
+            },
+            showDropdown: function(msg) {
+
+                this.clickedMsg = msg
+                this.isDropped = true
+            },
+            deleteMsg: function(index) {
+
+                let toSplice = this.filteredContacts[this.selIndex].messages
+                toSplice.splice(index, 1)
                 this.getMessages(this.selName, this.selIndex)
             },
         }
