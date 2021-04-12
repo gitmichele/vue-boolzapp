@@ -24,6 +24,9 @@
     <title>BoolzApp</title>
 </head>
 
+<!-- Chiedo scusa ho ricreato il layout di telegram invece che quello di whatsapp. Ho scritto a Giovanni per comunicare la cosa e mi ha consigliato di scrivere queste due righe di commento per evitare sorprese a chi dovrà correggere l'esercizio.
+WhatsApp non lo uso molto e ho scelto di rifarmi a telegram semplicemente perchè è la web app che abitualmente uso da desktop e mi veniva molto più comodo andarmi a copiare il layout. -->
+
 <body>
     
     <div id="app" class="app-container">
@@ -35,15 +38,16 @@
                 <div id="sidebar-search">
                     <div class="search-container">
                         <i class="fas fa-search"></i>
-                        <input type="text" placeholder="Cerca" v-model='search'
-                        v-on:keyup="stayFocused">
+                        <input type="text" placeholder="Cerca" v-model='search'>
                     </div>                    
                 </div>
 
                 <div id="sidebar-chats">
                     <div class="chats-container">
                         <ul>
-                            <li @click='getMessages(contactIndex); changeBg(contact);' v-for='(contact,contactIndex) in filteredContacts'>
+                            <li @click='getMessages(contact.name, contactIndex)'
+                                v-for='(contact,contactIndex) in filteredContacts'
+                                :class='contact.name == selName ? "focused" : "" '>
                                 <div class="img-container">
                                     <img :src="contact.avatar" alt="">
                                 </div>
@@ -62,7 +66,7 @@
 
             <section id="messages">
                 <div v-if='selIndex != null' class="messages-container">
-                    <div v-for='message in toDisplay' :class="(message.status == 'sent') ? 'sent' : 'received'"  class="msg">{{message.msg}}</div>
+                    <div v-for='message in toDisplay' :class="message.status"  class="msg">{{message.msg}}</div>
                 </div>
 
                 <div v-if='selIndex != null' class="typing-container">

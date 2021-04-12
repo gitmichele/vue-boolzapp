@@ -93,19 +93,15 @@ function init() {
             // array di messaggi dei messaggi relativi alla chat selezionata 
             toDisplay: [],
             
-            // array degli li relativi alle singole chat
-            listItem: [],
-
-            listName: [],
-
-            focused: '',
-
             // nuovo messaggio da inviare
             newMsg: '',
 
             // li selezionato (-> chat selezionata)
             selIndex: null,
 
+            selName: '',
+
+            // stringa dell'input di ricerca
             search: '',
         },
         computed: {
@@ -123,12 +119,13 @@ function init() {
         methods: {
 
             // prendo i messaggi da contacts e li stampo nel contentitore html dedicato
-            getMessages: function(index) {
+            getMessages: function(name, index) {
 
                 // svuoto i messaggi da mostrare da messaggi di chat precedenti
                 this.toDisplay = [];
                 // assegno l'indice selezionato all'apposita variabile
                 this.selIndex = index;
+                this.selName = name;
                 // conto quanti messaggi devo stampare 
                 let numOfMessages = this.filteredContacts[index].messages.length;
 
@@ -137,7 +134,7 @@ function init() {
                     let msg = this.filteredContacts[index].messages[i].text
                     let status = this.filteredContacts[index].messages[i].status
                     this.toDisplay.push({ msg, status})
-                };     
+                };                   
             },
 
             sendMsg: function() {
@@ -156,34 +153,6 @@ function init() {
                 let answer = 'ok';
                 this.filteredContacts[this.selIndex].messages.push({ 'text': answer, 'status': 'received' })
                 this.getMessages(this.selIndex)
-            },
-            changeBg: function(contact) {
-
-                this.listItem = document.getElementsByTagName('li')
-                this.listName = document.getElementsByTagName('h3')
-                
-                for (i=0; i<this.listName.length; i++){
-
-                    this.listItem[i].setAttribute('style', 'color:#000; background-color: #fff;')
-
-                    if (contact.name == this.listName[i].innerText){
-
-                        this.listItem[i].setAttribute('style', 'color:#fff; background-color: #5682a3;')
-                        this.focused = this.listName[i].innerText
-                    }
-                }
-            },
-            stayFocused: function() {
-
-                for (i=0;i<this.filteredContacts.length; i++){
-
-                    this.listItem[i].setAttribute('style', 'color:#000; background-color: #fff;')
-
-                    if (this.filteredContacts[i].name == this.focused){
-
-                        this.listItem[i].setAttribute('style', 'color:#fff; background-color: #5682a3;')
-                    }
-                }
             },
         }
     });
