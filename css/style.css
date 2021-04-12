@@ -30,6 +30,31 @@ body{
     display: flex;
     height: 48px;
     background-color: #5682a3;
+    display: flex;
+}
+.topbar-left{
+    width: 31%;
+    display: flex;
+    color: #fff;
+    align-items: center;
+    cursor: pointer;
+}
+.topbar-left i{
+    font-size: 18px;
+    margin: 0 35px 0 20px;
+}
+.topbar-left:hover{
+    background-color: #4d7899
+}
+.topbar-right-left{
+    line-height: 48px;
+    margin-left: 20px;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+}
+.topbar-right-left span{
+    color: #ffffff90;
 }
 
 /* MAIN */
@@ -101,6 +126,9 @@ main{
     cursor: pointer;
     justify-content: space-between;
 }
+#sidebar-chats li:hover{
+    background-color: #5682a310;
+}
 .img-container{
     width: 48px;
     height: 48px;
@@ -133,6 +161,9 @@ main{
 .focused{
     background-color: #5682a3;
 }
+#sidebar .focused:hover{
+    background-color:  #5682a3;
+}
 
 /* MESSAGES */
 #messages{
@@ -148,7 +179,7 @@ main{
     max-width: 100%;
     display: flex;
     flex-direction: column;
-    height: calc(100% - 125px);
+    height: calc(100% - 160px);
     overflow-y: auto;
 }
 #messages .msg{
@@ -209,6 +240,8 @@ main{
     justify-content: center;
     align-items: center;
     padding: 35px 0;
+    border-bottom: 1px solid black;
+    margin-bottom: 35px;
 }
 .typing-container textarea{
     height: 100%;

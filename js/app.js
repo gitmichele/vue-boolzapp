@@ -110,6 +110,8 @@ function init() {
 
             time: '',
 
+            today: ''
+
         },
         computed: {
 
@@ -177,6 +179,7 @@ function init() {
 
                 let event =  new Date()
                 this.time = event.toLocaleTimeString('it-IT')
+                this.today = event.toDateString()
             }
         }
     });

@@ -31,6 +31,16 @@ WhatsApp non lo uso molto e ho scelto di rifarmi a telegram semplicemente perch√
     
     <div id="app" class="app-container">
         <section id="topbar">
+            <div class="topbar-left">
+                <i class="fas fa-bars"></i>
+                <h1>Telegram</h1>
+            </div>
+            <div class="topbar-right">
+                <div class="topbar-right-left">
+                    <div v-if='selIndex != null'>{{selName}}</div>
+                    <div v-else></div>
+                </div>
+            </div>
         </section>
 
         <main>
@@ -66,6 +76,8 @@ WhatsApp non lo uso molto e ho scelto di rifarmi a telegram semplicemente perch√
             </section>
 
             <section id="messages">
+                <div class="date" v-if='selIndex != null'>{{today}}</div>
+
                 <div v-if='selIndex != null' class="messages-container">
                     <div v-for='(message, messageIndex) in toDisplay' :class="message.status"  class="msg">
                         <div class="text">
