@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- FONTAWESOME CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- VUE-JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+    <!-- MY FILES -->
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/app.js"></script>
+
+
+    <title>BoolzApp</title>
+</head>
+
+<!-- Chiedo scusa ho ricreato il layout di telegram invece che quello di whatsapp. Ho scritto a Giovanni per comunicare la cosa e mi ha consigliato di scrivere queste due righe di commento per evitare sorprese a chi dovrà correggere l'esercizio.
+WhatsApp non lo uso molto e ho scelto di rifarmi a telegram semplicemente perchè è la web app che abitualmente uso da desktop e mi veniva molto più comodo andarmi a copiare il layout. -->
+
+<body>
+    
+    <!-- app container -->
+    <div id="app" class="app-container">
+
+        <!-- top navigator -->
+        <section id="top-nav">
+            <div class="top-nav-left">
+                <i class="fas fa-bars"></i>
+                <h1>Telegram</h1>
+            </div>
+            <div class="top-nav-right">
+                <div class="topnav-right-contact">
+                </div>
+            </div>
+        </section>
+
+        <!-- main -->
+        <main>
+            <!-- side navigator with contacts links -->
+            <section id="side-nav">
+                <!-- search input -->
+                <div id="side-nav-search">
+                    <div class="search-container">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Cerca"
+                                v-model="textToSearch"
+                                v-on:keydown="resetIndex"
+                                v-on:keyup="getNewIndex">
+                    </div>
+                </div>
+
+                <!-- contacts links -->
+                <div id="side-nav-contacts">
+                    <div class="contacts-container">
+                        <ul>
+                            <li 
+                                v-for="(contact, index) in filterContacts()"
+                                @click="getThisContact(contact.name, index)"
+                                :class="contact.name == selName ? 'selected' : ''">
+                                <div class="img-container">
+                                    <img :src="contact.avatar" alt="">
+                                </div>
+                                <div class="text-container">
+                                    <h3>{{ contact.name }}</h3>
+                                    <p>
+                                        <span
+                                            v-if="contact.messages[contact.messages.length - 1].status == 'sent'">
+                                            Tu:
+                                        </span>
+                                        {{ contact.messages[contact.messages.length - 1].text }}
+                                    </p>
+                                </div>
+                                <div class="time-container"
+                                    v-if="contact.messages[contact.messages.length - 1].date == getDay()">
+                                    {{ contact.messages[contact.messages.length - 1].time }}
+                                </div>
+                                <div class="time-container"
+                                    v-else>
+                                    {{ contact.messages[contact.messages.length - 1].date }}
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- display contact's messages -->
+            <section id="chat">
+                <div class="messages-container"
+                    id="autoscroll"
+                    v-if="selIndex >= 0">
+                    <div class="date-message-container"
+                        v-for="date in filterDate(selIndex)">
+                        <p>{{ date }}</p> 
+                        <div class="message"
+                            :class="message.status" 
+                            v-if="message.date == date"
+                            v-for="(message, messageIndex) in filterContacts()[selIndex].messages">
+                            <div class="message-text">
+                                {{ message.text }}
+                            </div>
+                            <div class="message-utilty">
+                                <i class="fas fa-chevron-down"
+                                    @click="showDropdown(message)">
+                                    <div id="dropdown" class="dropdown-container"
+                                        :class=" clickedMessage == message ? 'active' : ''">
+                                        <div>Message Info</div>
+                                        <div
+                                        @click="deleteMessage(messageIndex)">Delete Message</div>
+                                    </div>
+                                </i>
+                                <div class="message-time">
+                                   {{ message.time }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- send new message textarea -->
+                <div class="typing-container"
+                    v-if="selIndex >= 0">
+                    <textarea name="message" cols="30" rows="3" placeholder="Invia un messaggio"
+                    v-model="newMsg"
+                    v-on:keydown.enter="sendMessage"></textarea>
+                    <i class="fas fa-paper-plane" @click="sendMessage"></i>
+                </div>
+
+                <!-- show when no contact's chats are selected -->
+                <div class='no-chat'
+                    v-else>
+                    Seleziona una chat per iniziare a messaggiare
+                </div>
+
+            </section>
+        </main>
+    </div>
+
+</body>
+
+</html>
