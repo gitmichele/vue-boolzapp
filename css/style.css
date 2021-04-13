@@ -19,41 +19,36 @@ body{
     max-width: 1010px;
     min-width: 300px;
 }
-.clearfix{
-    clear: both;
-    content: '';
-    display: table;
-}
 
-/* TOPBAR */
-#topbar{
+/* TOP NAVIGATOR */
+#top-nav{
     display: flex;
     height: 48px;
     background-color: #5682a3;
     display: flex;
 }
-.topbar-left{
+.top-nav-left{
     width: 31%;
     display: flex;
     color: #fff;
     align-items: center;
     cursor: pointer;
 }
-.topbar-left i{
+.top-nav-left i{
     font-size: 18px;
     margin: 0 35px 0 20px;
 }
-.topbar-left:hover{
+.top-nav-left:hover{
     background-color: #4d7899
 }
-.topbar-right-left{
+.top-nav-right-contact{
     line-height: 48px;
     margin-left: 20px;
     color: #fff;
     font-size: 13px;
     font-weight: 600;
 }
-.topbar-right-left span{
+.top-nav-right-contact span{
     color: #ffffff90;
 }
 
@@ -70,18 +65,18 @@ main{
     overflow: hidden;
 }
 
-/* SIDEBAR */
-/* SIDEBAR SEARCH */
-#sidebar{
+/* SIDE NAVIGATOR */
+/* side navigator search */
+#side-nav{
     width: 31%;
     height: 100%;
     border-right: 2px solid #dfe5ec;
 }
-.search-container{
+#side-nav-search .search-container{
     padding: 12px;
     position: relative;
 }
-#sidebar-search input{
+#side-nav-search input{
     position: relative;
     height: 34px;
     width: 100%;
@@ -93,15 +88,15 @@ main{
     margin: 0;
     background-color: #F2F2F2;
 }
-#sidebar-search input:focus{
+#side-nav-search input:focus{
     background-color: #fff;
     border: 1px solid #d9dbde;
     outline: 0;
 }
-#sidebar-search input::placeholder{
+#side-nav-search input::placeholder{
     color: #999;
 }
-#sidebar-search i{
+#side-nav-search i{
     position: absolute;
     color: #999;
     opacity: .7;
@@ -112,21 +107,21 @@ main{
     font-size: 13px;
 }
 
-/* SIDEBAR CHATS */
-.chats-container{
+/* side navigator contacts links */
+#side-nav-contacts .contacts-container{
     display: flex;
     flex-direction: column;
 }
-#sidebar-chats ul{
+#side-nav-contacts ul{
     list-style: none;
 }
-#sidebar-chats li{
+#side-nav-contacts li{
     padding: 7px 16px;
     display: flex;
     cursor: pointer;
     justify-content: space-between;
 }
-#sidebar-chats li:hover{
+#side-nav-contacts li:hover{
     background-color: #5682a310;
 }
 .img-container{
@@ -137,10 +132,10 @@ main{
     margin-right: 15px;
     flex-shrink: 0;
 }
-#sidebar-chats img{
+#side-nav-contacts img{
     width: 100%;
 }
-#sidebar-chats .text-container{
+#side-nav-contacts .text-container{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -148,41 +143,45 @@ main{
     flex-grow: 2;
     overflow: hidden;
 }
-#sidebar-chats .text-container p,
-#sidebar-chats .text-container h3{
+#side-nav-contacts .text-container p,
+#side-nav-contacts .text-container h3{
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
-#sidebar-chats .time-container{
+#side-nav-contacts .time-container{
     padding-top: 5px;
     margin-left: 5px;
 }
-.focused{
+#side-nav-contacts .selected{
     background-color: #5682a3;
 }
-#sidebar .focused:hover{
+#side-nav-contacts .selected:hover{
     background-color:  #5682a3;
 }
 
-/* MESSAGES */
-#messages{
+/* CHATS */
+/* display chats messages */
+#chat{
     width: 69%;
 }
-#messages .date{
-    text-align: center;
-    color: #999;
-    font-size: 13px;
-    margin: 10px auto;
-}
-#messages .messages-container{
+#chat .messages-container{
     max-width: 100%;
-    display: flex;
-    flex-direction: column;
     height: calc(100% - 160px);
     overflow-y: auto;
 }
-#messages .msg{
+#chat .date-message-container{
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+#chat .date-message-container p{
+    text-align: center;
+    margin: 10px auto;
+    font-size: 13px;
+    color: #999;
+}
+#chat .message{
     font-size: 13px;
     border-radius: 5px;
     padding: 7px 15px;
@@ -195,19 +194,19 @@ main{
     max-width: 80%;
     word-wrap: anywhere;
 }
-.msg .text{
+#chat .message .message-text{
     max-width: 90%;
 }
-.msg .rest{
+#chat .message .message-utility{
     align-self: flex-end;
     margin-left: 10px;
 }
-.msg i{
+#chat .message-utilty i{
     cursor: pointer;
     position: relative;
     margin-left: 25px;
 }
-.msg .dropdown-container{
+#chat .message .dropdown-container{
     position: absolute;
     width: max-content;
     padding: 10px;
@@ -222,18 +221,21 @@ main{
     border-radius: 5px;
     display: none;
 }
-.msg .active{
+#chat .message .active{
     display: block;
+    z-index: 999;
 }
-.sent{
+#chat .sent{
     align-self: flex-end;
     background-color: #5682a3;
     color: #fff;
 }
-.received{
+#chat .received{
     align-self: flex-start;
 }
-#messages .typing-container{
+
+/* typing area for new messages */
+#chat .typing-container{
     height: 125px;
     display: flex;
     width: 100%;
@@ -243,7 +245,7 @@ main{
     border-bottom: 1px solid black;
     margin-bottom: 35px;
 }
-.typing-container textarea{
+#chat .typing-container textarea{
     height: 100%;
     font-size: 13px;
     width: 60%;
@@ -253,17 +255,17 @@ main{
     resize: none;
     
 }
-.typing-container textarea:focus::placeholder{
+#chat .typing-container textarea:focus::placeholder{
     opacity: 0;
 }
-.typing-container i{
+#chat .typing-container i{
     font-size: 20px;
     cursor: pointer;
     color: #5682a3;
 }
 
-/* CHOOSE A CHAT */
-#messages .no-chat{
+/* no chat selected */
+#chat #messages .no-chat{
     padding: 230px 0;
     color: #999;
     font-size: 16px;

@@ -1,7 +1,7 @@
 function init() {
 
     new Vue({
-    
+
         el: '#app',
         data: {
             contacts: [
@@ -9,178 +9,257 @@ function init() {
                     name: 'Michele',
                     avatar: 'img/avatar1.png',
                     visible: true,
-                    messages: [
-                        {
-                            time: '15:30:55',
-                            text: 'Hai portato a spasso il cane?',
-                            status: 'sent'
-                        },
-                        {
-                            time: '15:50:00',
-                            text: 'Ricordati di dargli da mangiare',
-                            status: 'sent'
-                        },
-                        {
-                            time: '16:15:22',
-                            text: 'Tutto fatto!',
-                            status: 'received'
-                        }
-                    ],
+                    date: [
+                        [
+                            {
+                                day: '12/4/2021',
+                                time: '15:30',
+                                text: 'Hai portato a spasso il cane?',
+                                status: 'sent'
+                            },
+                            {
+                                day: '12/4/2021',
+                                time: '15:50',
+                                text: 'Ricordati di dargli da mangiare',
+                                status: 'sent'
+                            }
+                        ],
+                        [
+                            {
+                                day: '13/4/2021',
+                                time: '8:30',
+                                text: 'Tutto fatto!',
+                                status: 'received'
+                            },
+                            {
+                                day: '13/4/2021',
+                                time: '8:35',
+                                text: 'Grazie',
+                                status: 'sent'
+                            },
+                            {
+                                day: '13/4/2021',
+                                time: '9:00',
+                                text: 'E di che',
+                                status: 'received'
+                            }
+                        ]
+                    ]
                 },
                 {
                     name: 'Fabio',
                     avatar: 'img/avatar2.png',
                     visible: true,
-                    messages: [
-                        {
-                            time: '16:30:00',
-                            text: 'Ciao come stai?',
-                            status: 'sent'
-                        },
-                        {
-                            time: '16:30:55',
-                            text: 'Bene grazie! Stasera ci vediamo?',
-                            status: 'received'
-                        },
-                        {
-                            time: '16:35:00',
-                            text: 'Mi piacerebbe ma devo andare a fare la spesa.',
-                            status: 'sent'
-                        }
-                    ],
+                    date: [
+                        [
+                            {
+                                day: '8/4/2021',
+                                time: '10:30',
+                                text: 'Ciao come stai?',
+                                status: 'sent'
+                            },
+                            {
+                                day: '12/4/2021',
+                                time: '15:50',
+                                text: 'Scusa avevo perso il telefono',
+                                status: 'received'
+                            },
+                            {
+                                day: '12/4/2021',
+                                time: '15:52',
+                                text: 'Bene grazue tu?',
+                                status: 'received'
+                            },
+                        ],
+                        [
+                            {
+                                day: '12/4/2021',
+                                time: '16:30',
+                                text: 'Bene Anche io!',
+                                status: 'sent'
+                            },
+                        ]
+                    ]
                 },
                 {
                     name: 'Samuele',
                     avatar: 'img/avatar3.png',
                     visible: true,
-                    messages: [
-                        {
-                            time: '10:10:40',
-                            text: 'La Marianna va in campagna',
-                            status: 'received'
-                        },
-                        {
-                            time: '10:20:10',
-                            text: 'Sicuro di non aver sbagliato chat?',
-                            status: 'sent'
-                        },
-                        {
-                            time: '16:15:22',
-                            text: 'Ah scusa!',
-                            status: 'received'
-                        }
-                    ],
+                    date: [
+                        [
+                            {
+                                day: '1/3/2021',
+                                time: '14:21',
+                                text: 'La Marianna va in campagna',
+                                status: 'received'
+                            },
+                            {
+                                day: '1/3/2021',
+                                time: '15:00',
+                                text: 'Sicuro di non aver sbagliato?',
+                                status: 'sent'
+                            }
+                        ],
+                        [
+                            {
+                                day: '2/3/2021',
+                                time: '21:41',
+                                text: 'Avevo sbagliato scusa',
+                                status: 'received'
+                            },
+                        ]
+                    ]
                 },
                 {
                     name: 'Luisa',
                     avatar: 'img/avatar4.png',
                     visible: true,
-                    messages: [
-                        {
-                            time: '15:30:55',
-                            text: 'Lo sai che ha aperto una nuova pizzeria?',
-                            status: 'sent'
-                        },
-                        {
-                            time: '15:50:00',
-                            text: 'Si, ma preferirei andare al cinema',
-                            status: 'received'
-                        }
-                    ],
+                    date: [
+                        [
+                            {
+                                day: '13/4/2021',
+                                time: '12:30',
+                                text: 'Sai che ha aperto una nuova pizzeria?',
+                                status: 'sent'
+                            },
+                            {
+                                day: '13/4/2021',
+                                time: '12:34',
+                                text: 'Preferirei andare al cinema',
+                                status: 'received'
+                            }
+                        ],
+                    ]
                 },
             ],
 
-            // array di messaggi dei messaggi relativi alla chat selezionata 
-            toDisplay: [],
-            
-            // nuovo messaggio da inviare
-            newMsg: '',
-
-            // li selezionato (-> chat selezionata)
-            selIndex: null,
-
-            selName: '',
-
-            // stringa dell'input di ricerca
-            search: '',
-
-            clickedMsg: [], 
-
-            isDropped: false,
-
-            time: '',
-
-            today: ''
-
+            selectedContactIndex: -1,
+            selectedContactName: '',
+            messageToSend: '',
+            textToSearch: '',
+            newIndex: -1,
+            clickedMessage: {},
         },
-        computed: {
-
-            filteredContacts: function() {
-
-                let self = this;
-
-                return this.contacts.filter(function(contact) {
-                    
-                    return contact.name.toLowerCase().indexOf(self.search.toLowerCase()) >= 0;
-                });   
-            }
+        updated() {
+            var container = this.$el.querySelector("#autoscroll");
+            if (container != null) container.scrollTop = container.scrollHeight;
         },
         methods: {
 
-            // prendo i messaggi da contacts e li stampo nel contentitore html dedicato
-            getMessages: function(name, index) {
+            getDay: function () {
 
-                this.now()
-                // svuoto i messaggi da mostrare da messaggi di chat precedenti
-                this.toDisplay = [];
-                // assegno l'indice selezionato all'apposita variabile
-                this.selIndex = index;
-                this.selName = name;
-                // conto quanti messaggi devo stampare 
-                let numOfMessages = this.filteredContacts[index].messages.length;
+                const today = new Date();
 
-                // ciclo per stampare i messaggi del contatto selezionato
-                for (i=0; i<numOfMessages; i++){
-                    let msg = this.filteredContacts[index].messages[i].text
-                    let status = this.filteredContacts[index].messages[i].status
-                    this.toDisplay.push({msg, status})
-                };                   
+                return ((today.getDate() +
+                    '/' +
+                    (today.getMonth() + 1) +
+                    '/' +
+                    today.getFullYear()
+                ).toString());
             },
+            getTime: function () {
 
-            sendMsg: function() {
-
-                // pusho il nuovo messaggio nell'oggetto messaggi del contatto selezionato
-                this.filteredContacts[this.selIndex].messages.push({'time': this.time,'text': this.newMsg, 'status': 'sent'})
-                // richiamo la funzione che stampa nuovamnete i messaggi, compreso quello nuovo
-                this.getMessages(this.selName, this.selIndex)
-                // pulisco la textarea per l'inserimento nuovi messaggi
-                this.newMsg = ''
-
-                setTimeout(function () {this.answerMsg()}.bind(this), 1000)
+                const time = new Date();
+                return ((time.getHours() +
+                    ':' +
+                    (time.getMinutes() < 10 ? '0' : '') +
+                    time.getMinutes()
+                ).toString())
             },
-            answerMsg: function() {
+            getThisContact: function (name, index) {
 
-                let answer = 'ok';
-                this.filteredContacts[this.selIndex].messages.push({ 'time': this.time, 'text': answer, 'status': 'received' })
-                this.getMessages(this.selName, this.selIndex)
+                this.selectedContactIndex = index;
+                this.selectedContactName = name;
             },
-            showDropdown: function(msg) {
+            addNewMessage: function (message, msgStatus) {
 
-                this.clickedMsg = msg
-                this.isDropped = true
+                const now = this.getTime();
+                const today = this.getDay();
+
+                return { day: today, time: now, text: message, status: msgStatus }
             },
-            deleteMsg: function(index) {
+            receiveMessage: function (date) {
 
-                let toSplice = this.filteredContacts[this.selIndex].messages
-                toSplice.splice(index, 1)
-                this.getMessages(this.selName, this.selIndex)
+                const lastDate = date[date.length - 1];
+                const today = this.getDay();
+
+                setTimeout(() => {
+
+                    const toSend = this.addNewMessage('ok', 'received')
+
+                    if (lastDate[0].day == today) {
+
+                        lastDate.push(toSend)
+                    }
+                    else {
+
+                        date.push([toSend])
+                    }
+                }, 1000)
             },
-            now: function() {
+            sendMessage: function () {
 
-                let event =  new Date()
-                this.time = event.toLocaleTimeString('it-IT')
-                this.today = event.toDateString()
-            }
+                const selObj = this.filteredContacts()[this.selectedContactIndex];
+                const selDate = selObj.date;
+                const lastDate = selDate[selDate.length - 1];
+                const today = this.getDay();
+
+                const toSend = this.addNewMessage(this.messageToSend, 'sent')
+
+
+                if (lastDate[0].day == today) {
+
+                    lastDate.push(toSend)
+                }
+                else {
+
+                    selDate.push([toSend])
+                }
+
+                this.messageToSend = '';
+
+                this.receiveMessage(selDate);
+            },
+            filteredContacts: function () {
+
+                filter = [];
+
+                for (let i = 0; i < this.contacts.length; i++) {
+
+                    if (this.contacts[i].name.toLowerCase().includes(this.textToSearch.toLowerCase())) {
+
+                        filter.push(this.contacts[i])
+                    }
+                }
+
+                return filter
+            },
+            resetIndex: function () {
+
+                this.selectedContactIndex = -1
+            },
+            getNewIndex: function () {
+
+                const test = document.getElementsByTagName('li')
+
+                for (i = 0; i < test.length; i++) {
+
+
+                    if (test[i].classList.contains('selected')) {
+
+                        this.selectedContactIndex = i
+                    }
+                }
+            },
+            toggleDropdown: function (message) {
+
+                this.clickedMessage = message;
+            },
+            deleteMessage: function (dataIndex, messageIndex) {
+
+                // let toSplice = this.filteredContacts()[this.selectedContactIndex].data[dataIndex][messageIndex]
+                // toSplice.splice(messageIndex, 1)
+            },
         }
     });
 };
