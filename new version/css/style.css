@@ -38,18 +38,48 @@ body{
     font-size: 18px;
     margin: 0 35px 0 20px;
 }
-.top-nav-left:hover{
+.top-nav-left:hover,
+.top-nav-right-contact:hover,
+.top-nav-right-icons i:hover{
     background-color: #4d7899
+}
+.top-nav-right{
+    width: 69%;
+    display: flex;
 }
 .top-nav-right-contact{
     line-height: 48px;
-    margin-left: 20px;
     color: #fff;
     font-size: 13px;
     font-weight: 600;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    cursor: pointer;
+    width: 100%;
 }
-.top-nav-right-contact span{
-    color: #ffffff90;
+.top-nav-right-contact h3{
+    color: #fff;
+    margin-left: 10px;
+}
+.top-nav-right-contact > .img-container{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-left: 5px;
+    flex-shrink: 0;     
+}
+.top-nav-right-icons{
+    display: flex;
+    
+}
+.top-nav-right-icons i{
+    padding: 16px 21px;
+    color: #fff;
+   font-size: 15px;
+   cursor: pointer;
 }
 
 /* MAIN */
@@ -124,7 +154,7 @@ main{
 #side-nav-contacts li:hover{
     background-color: #5682a310;
 }
-.img-container{
+#side-nav-contacts .img-container{
     width: 48px;
     height: 48px;
     border-radius: 50%;
@@ -132,7 +162,7 @@ main{
     margin-right: 15px;
     flex-shrink: 0;
 }
-#side-nav-contacts img{
+img{
     width: 100%;
 }
 #side-nav-contacts .text-container{
@@ -167,7 +197,7 @@ main{
 }
 #chat .messages-container{
     max-width: 100%;
-    height: calc(100% - 160px);
+    height: calc(100% - 140px);
     overflow-y: auto;
 }
 #chat .date-message-container{
@@ -242,8 +272,6 @@ main{
     justify-content: center;
     align-items: center;
     padding: 35px 0;
-    border-bottom: 1px solid black;
-    margin-bottom: 35px;
 }
 #chat .typing-container textarea{
     height: 100%;
@@ -265,7 +293,7 @@ main{
 }
 
 /* no chat selected */
-#chat #messages .no-chat{
+#chat .no-chat{
     padding: 230px 0;
     color: #999;
     font-size: 16px;

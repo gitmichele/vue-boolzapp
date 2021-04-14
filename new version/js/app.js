@@ -104,6 +104,7 @@ function init() {
             textToSearch: '',
             selIndex: -1,
             selName: '',
+            selAvatar: '',
             newMsg: '',
             clickedMessage: {}
         },
@@ -161,16 +162,25 @@ function init() {
 
                 return filter
             },
-            getThisContact: function(name, index) {
+            getThisContact: function(contact, index) {
 
                 this.selIndex = index;
-                this.selName = name;
+                this.selName = contact.name;
+                this.selAvatar = contact.avatar
             },
             sendMessage: function () {
+
                 const newMsg = this.getNewMessage(this.newMsg, 'sent');
-                this.filterContacts()[this.selIndex].messages.push(newMsg);
-                this.newMsg = '';
-                this.sendAutoReply();
+
+                if (newMsg.text.length == 0 || newMsg.text == '\n'){
+                    alert('Non puoi inviare un messaggio vuoto')
+                }
+                else{
+                    this.filterContacts()[this.selIndex].messages.push(newMsg);
+                    this.newMsg = '';
+                    this.sendAutoReply();
+                }
+
             },
             sendAutoReply: function () {
                 const toReplyIndex = this.selIndex;
@@ -193,7 +203,7 @@ function init() {
             },
             resetIndex: function() {
                 
-                this.selIndex = -1
+                this.selIndex = -1;
             },
             getNewIndex: function() {
 
@@ -204,13 +214,12 @@ function init() {
 
                     if (test[i].classList.contains('selected')){
 
-                        this.selIndex = i
+                        this.selIndex = i;
                     }
                 }
             },
             showDropdown: function(message) {
                 
-                // this.clickedMessage = message
                 this.clickedMessage = message; 
             },
             deleteMessage: function (messageIndex) {

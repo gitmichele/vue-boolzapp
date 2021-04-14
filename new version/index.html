@@ -15,6 +15,7 @@
 
     <!-- VUE-JS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-clickaway@2.2.2/dist/vue-clickaway.min.js"></script>
 
     <!-- MY FILES -->
     <link rel="stylesheet" href="css/style.css">
@@ -38,7 +39,19 @@
                 <h1>Telegram</h1>
             </div>
             <div class="top-nav-right">
-                <div class="topnav-right-contact">
+                <div class="top-nav-right-contact">
+                    <div class="img-container"
+                        v-if="selIndex != -1">
+                        <img :src="selAvatar" alt="">
+                    </div>
+                    <h3
+                    v-if="selIndex != -1">
+                    {{ selName }}
+                    </h3>
+                </div>
+                <div class="top-nav-right-icons">
+                    <i class="fas fa-search"></i>
+                    <i class="fas fa-ellipsis-v"></i>
                 </div>
             </div>
         </section>
@@ -64,7 +77,7 @@
                         <ul>
                             <li 
                                 v-for="(contact, index) in filterContacts()"
-                                @click="getThisContact(contact.name, index)"
+                                @click="getThisContact(contact, index)"
                                 :class="contact.name == selName ? 'selected' : ''">
                                 <div class="img-container">
                                     <img :src="contact.avatar" alt="">
@@ -131,7 +144,7 @@
                     v-if="selIndex >= 0">
                     <textarea name="message" cols="30" rows="3" placeholder="Invia un messaggio"
                     v-model="newMsg"
-                    v-on:keydown.enter="sendMessage"></textarea>
+                    v-on:keydown.Enter="sendMessage"></textarea>
                     <i class="fas fa-paper-plane" @click="sendMessage"></i>
                 </div>
 
