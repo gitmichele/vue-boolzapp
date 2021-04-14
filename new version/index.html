@@ -71,7 +71,7 @@
                                 </div>
                                 <div class="text-container">
                                     <h3>{{ contact.name }}</h3>
-                                    <p>
+                                    <p v-if="contact.messages.length >= 1">
                                         <span
                                             v-if="contact.messages[contact.messages.length - 1].status == 'sent'">
                                             Tu:
@@ -79,13 +79,13 @@
                                         {{ contact.messages[contact.messages.length - 1].text }}
                                     </p>
                                 </div>
-                                <div class="time-container"
-                                    v-if="contact.messages[contact.messages.length - 1].date == getDay()">
-                                    {{ contact.messages[contact.messages.length - 1].time }}
-                                </div>
-                                <div class="time-container"
-                                    v-else>
-                                    {{ contact.messages[contact.messages.length - 1].date }}
+                                <div v-if="contact.messages.length >= 1">
+                                    <div class="time-container" v-if="contact.messages[contact.messages.length - 1].date == getDay()">
+                                        {{ contact.messages[contact.messages.length - 1].time }}
+                                    </div>
+                                    <div class="time-container" v-else>
+                                        {{ contact.messages[contact.messages.length - 1].date }}
+                                    </div>
                                 </div>
                             </li>
                         </ul>

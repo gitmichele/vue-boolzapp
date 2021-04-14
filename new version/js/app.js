@@ -23,7 +23,7 @@ function init() {
                             status: 'sent'
                         },
                         {
-                            date: '10/01/2020',
+                            date: '14/04/2021',
                             time: '16:15',
                             text: 'Tutto fatto!',
                             status: 'received'
@@ -92,7 +92,7 @@ function init() {
                             status: 'sent'
                         },
                         {
-                            date: '13/04/2021',
+                            date: '14/04/2021',
                             time: '15:50',
                             text: 'Si, ma preferirei andare al cinema',
                             status: 'received'
