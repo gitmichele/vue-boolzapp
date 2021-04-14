@@ -101,19 +101,28 @@ function init() {
                 },
             ],
 
+            // testo dalla search bar
             textToSearch: '',
+            // index contatto selezionato (-1 -> nessun contatto sel)
             selIndex: -1,
+            // nome contatto selezionato
             selName: '',
+            // img contatto selezionato
             selAvatar: '',
+            // testo dalla text area per i nuovi messaggi
             newMsg: '',
-            clickedMessage: {}
+            // messaggio selezionato al click del dropdown
+            clickedMessage: {},
+            // attivo disattivo dropdown
+            isActive: false,
         },
+        // autoscroll sezione messaggi
         updated() {
             var container = this.$el.querySelector("#autoscroll");
             if (container != null)container.scrollTop = container.scrollHeight;
         },
         methods: {
-
+             
             getDay: function() {
 
                 const today = new Date();
@@ -135,6 +144,7 @@ function init() {
                         time.getMinutes()
                         ).toString())
             },
+            // seleziono le date dei messaggi dei contatti e creo un array di date uniche per ogni contatto
             filterDate: function(index) {
 
                 let filter = [];
@@ -148,6 +158,7 @@ function init() {
                 }
                 return filter
             },
+            // filtro in base al testo digitato nella barra di ricerca
             filterContacts: function() {
 
                 let filter = [];
@@ -162,12 +173,14 @@ function init() {
 
                 return filter
             },
+            // quando clicco su un contatto mi porto di qua tre variabili
             getThisContact: function(contact, index) {
 
                 this.selIndex = index;
                 this.selName = contact.name;
                 this.selAvatar = contact.avatar
             },
+            // invio nuovo messaggio + risposta automatica 
             sendMessage: function () {
 
                 const newMsg = this.getNewMessage(this.newMsg, 'sent');
@@ -178,13 +191,16 @@ function init() {
                 else{
                     this.filterContacts()[this.selIndex].messages.push(newMsg);
                     this.newMsg = '';
-                    this.sendAutoReply();
+                    this.replyMessage();
                 }
 
             },
-            sendAutoReply: function () {
+            replyMessage: function () {
+
                 const toReplyIndex = this.selIndex;
+
                 setTimeout(() => {
+
                     const newMsg = this.getNewMessage('Ok', 'received');
                     this.filterContacts()[toReplyIndex].messages.push(newMsg);
                 }, 1000);
@@ -201,18 +217,19 @@ function init() {
                     status: status
                 };
             },
+            // gestisco l'indice ogni volta che digito un tasto nella barra di ricerca
             resetIndex: function() {
                 
                 this.selIndex = -1;
             },
             getNewIndex: function() {
 
-                const test = document.getElementsByTagName('li')
+                const displayedContacts = document.getElementsByTagName('li')
 
-                for (i=0;i<test.length;i++){
+                for (i=0;i<displayedContacts.length;i++){
 
 
-                    if (test[i].classList.contains('selected')){
+                    if (displayedContacts[i].classList.contains('selected')){
 
                         this.selIndex = i;
                     }
@@ -220,6 +237,7 @@ function init() {
             },
             showDropdown: function(message) {
                 
+                this.isActive = !this.isActive
                 this.clickedMessage = message; 
             },
             deleteMessage: function (messageIndex) {
@@ -227,8 +245,8 @@ function init() {
                 let toSplice = this.filterContacts()[this.selIndex].messages;
 
                 toSplice.splice(messageIndex, 1)
-            },
-        }
+            }
+        },
     });
 };
 

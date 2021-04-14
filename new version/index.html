@@ -107,32 +107,26 @@
             </section>
 
             <!-- display contact's messages -->
+            <!-- display contact's messages -->
             <section id="chat">
-                <div class="messages-container"
-                    id="autoscroll"
-                    v-if="selIndex >= 0">
-                    <div class="date-message-container"
-                        v-for="date in filterDate(selIndex)">
-                        <p>{{ date }}</p> 
-                        <div class="message"
-                            :class="message.status" 
-                            v-if="message.date == date"
+                <div class="messages-container" id="autoscroll" v-if="selIndex >= 0">
+                    <div class="date-message-container" v-for="date in filterDate(selIndex)">
+                        <p>{{ date }}</p>
+                        <div class="message" :class="message.status" v-if="message.date == date"
                             v-for="(message, messageIndex) in filterContacts()[selIndex].messages">
                             <div class="message-text">
                                 {{ message.text }}
                             </div>
                             <div class="message-utilty">
-                                <i class="fas fa-chevron-down"
-                                    @click="showDropdown(message)">
+                                <i class="fas fa-chevron-down" @click="showDropdown(message)">
                                     <div id="dropdown" class="dropdown-container"
-                                        :class=" clickedMessage == message ? 'active' : ''">
+                                        :class=" clickedMessage == message && isActive ? 'active' : ''">
                                         <div>Message Info</div>
-                                        <div
-                                        @click="deleteMessage(messageIndex)">Delete Message</div>
+                                        <div @click="deleteMessage(messageIndex)">Delete Message</div>
                                     </div>
                                 </i>
                                 <div class="message-time">
-                                   {{ message.time }}
+                                    {{ message.time }}
                                 </div>
                             </div>
                         </div>
